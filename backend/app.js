@@ -7,6 +7,6 @@ app.use(express.json());
 // Routes imports
 const product = require("./routes/productRoute");
 
-app.use("api/v1", product);
+app.use("/api/v1", product);
 
 module.exports = app;
