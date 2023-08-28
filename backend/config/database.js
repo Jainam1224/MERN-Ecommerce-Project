@@ -11,14 +11,13 @@ const mongoose = require("mongoose");
 
 // This is how we create the mongodb connection
 const connectDatabase = () => {
-  mongoose
-    .connect(process.env.DB_URI)
-    .then((data) => {
-      console.log(`Mongodb connected with server: ${data.connection.host}`);
-    })
-    .catch((err) => {
-      console.log("err", err);
-    });
+  mongoose.connect(process.env.DB_URI).then((data) => {
+    console.log(`Mongodb connected with server: ${data.connection.host}`);
+  });
+  // We are removing this catch so that our server gets closed inside server.js => process.on function
+  // .catch((err) => {
+  //   console.log("err", err);
+  // });
 };
 
 module.exports = connectDatabase;
