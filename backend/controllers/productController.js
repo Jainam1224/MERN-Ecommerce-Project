@@ -15,7 +15,9 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 // Get all Products
 exports.getAllProducts = catchAsyncErrors(async (req, res) => {
   // new search apiFeature
-  const apiFeature = new ApiFeatures(Product.find(), req.query).search(); // searching product by name
+  const apiFeature = new ApiFeatures(Product.find(), req.query)
+    .search() // searching product by name
+    .filter(); // filtering product by category
   const products = await apiFeature.query; // accessing the class
 
   // older way
