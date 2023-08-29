@@ -37,6 +37,16 @@ class ApiFeatures {
     this.query = this.query.find(JSON.parse(queryStr)); // filtering on basis of category
     return this; // return this class itself
   }
+
+  pagination(resultPerPage) {
+    const currentPage = Number(this.queryStr.page) || 1;
+
+    // This means that if on each page we are showing 5 products and for eg. we are on 2nd page then we need to skip 1 to 5 products and start from 6th.
+    const skipNumberOfProducts = resultPerPage * (currentPage - 1);
+
+    this.query = this.query.limit(resultPerPage).skip(skipNumberOfProducts);
+    return this; // return this class itself
+  }
 }
 
 module.exports = ApiFeatures;
