@@ -5,6 +5,8 @@ const ApiFeatures = require("../utils/apiFeatures");
 
 // Create Product - Admin
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
+  // We don't want to ask user to add their name i.e. we would automatically store the id of User who added this product.
+  req.body.user = req.user.id;
   const product = await Product.create(req.body);
   res.status(201).json({
     success: true,
