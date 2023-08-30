@@ -16,3 +16,20 @@ exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
 
   next();
 });
+
+// ...roles means it will convert the data into an array[]
+exports.authorizeRoles = (...roles) => {
+  return (req, res, next) => {
+    // we have passed roles to this function for particular API but if req.body.role is "user", then he won't be able to access and error will be thrown.
+    if (!roles.includes(req.user.role)) {
+      return next(
+        new ErrorHandler(
+          `Role: ${req.user.role} is not allowed to access the resource`,
+          403
+        )
+      );
+    }
+
+    next();
+  };
+};
