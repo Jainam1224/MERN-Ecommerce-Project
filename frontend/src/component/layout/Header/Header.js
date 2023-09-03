@@ -1,6 +1,7 @@
 import React from "react";
 import { ReactNavbar } from "overlay-navbar";
 import logo from "../../../images/logo.png";
+import {FaUserAlt, FaSearch, FaShoppingCart} from "react-icons/fa"
 
 const options = {
   burgerColorHover: "#eb4034",
@@ -25,7 +26,12 @@ const options = {
   nav4justifyContent: "flex-start",
   link1ColorHover: "#eb4034",
   link1Margin: "1vmax",
-  profileIconUrl: "/login",
+  profileIcon: true,
+  ProfileIconElement: FaUserAlt,
+  searchIcon: true,
+  SearchIconElement: FaSearch,
+  cartIcon: true,
+  CartIconElement: FaShoppingCart,
   profileIconColor: "rgba(35, 35, 35,0.8)",
   searchIconColor: "rgba(35, 35, 35,0.8)",
   cartIconColor: "rgba(35, 35, 35,0.8)",
