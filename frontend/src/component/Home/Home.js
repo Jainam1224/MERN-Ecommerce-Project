@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import {CgMouse} from "react-icons/cg"
 import "./Home.css"
 import ProductCard from "./ProductCard.js"
+import MetaData from '../layout/MetaData'
 
 const product = {
   name: "Blue Tshirt",
@@ -13,6 +14,9 @@ const product = {
 const Home = () => {
   return (
     <Fragment>
+       {/* This is the title of google chrome tabs */}
+      <MetaData title={"ECOMMERCE"}/>
+
        <div className='banner'>
         <p>Welcome to Ecommerce</p>
         <h1>FIND AMAZING PRODUCTS BELOW</h1>
