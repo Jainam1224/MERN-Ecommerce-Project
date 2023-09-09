@@ -6,8 +6,10 @@ import MetaData from "../layout/MetaData";
 import { getProduct } from "../../actions/productAction";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../layout/Loader/Loader";
+import { useAlert } from "react-alert";
 
 const Home = () => {
+  const alert = useAlert();
   const dispatch = useDispatch();
   // This is the data which we can select from store when we dispatch inside the useEffect
   const { loading, error, products, productCount } = useSelector(
@@ -15,8 +17,11 @@ const Home = () => {
   );
 
   useEffect(() => {
+    if (error) {
+      return alert.error(error);
+    }
     dispatch(getProduct());
-  }, [dispatch]);
+  }, [dispatch, error]);
 
   return (
     <Fragment>
