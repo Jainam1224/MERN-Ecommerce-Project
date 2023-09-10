@@ -4,7 +4,8 @@ import Header from "./component/layout/Header/Header";
 import Footer from "./component/layout/Footer/Footer";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import WebFont from "webfontloader";
-import Home from "./component/Home/Home"
+import Home from "./component/Home/Home";
+import ProductDetails from "./component/Product/ProductDetails.js";
 
 function App() {
   // loading font styles before the page gets load
@@ -17,14 +18,15 @@ function App() {
   }, []);
 
   return (
-    <Router> 
+    <Router>
       <Header />
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/product/:id" element={<ProductDetails />} />
       </Routes>
       <Footer />
     </Router>
   );
 }
- 
+
 export default App;
