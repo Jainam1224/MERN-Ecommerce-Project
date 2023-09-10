@@ -10,27 +10,31 @@ import {
 } from "../constants/productConstants";
 
 // Get All Products
-export const getProduct = () => async (dispatch) => {
-  try {
-    dispatch({
-      type: ALL_PRODUCT_REQUEST,
-    });
+export const getProduct =
+  (keyword = "") =>
+  async (dispatch) => {
+    try {
+      dispatch({
+        type: ALL_PRODUCT_REQUEST,
+      });
 
-    const { data } = await axios.get("/api/v1/products");
+      const link = `/api/v1/products?keyword=${keyword}`;
 
-    console.log("data", data);
+      const { data } = await axios.get(link);
 
-    dispatch({
-      type: ALL_PRODUCT_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: ALL_PRODUCT_FAIL,
-      payload: error.response.data.message,
-    });
-  }
-};
+      console.log("data", data);
+
+      dispatch({
+        type: ALL_PRODUCT_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: ALL_PRODUCT_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
 
 // Get Products Details
 export const getProductDetails = (id) => async (dispatch) => {

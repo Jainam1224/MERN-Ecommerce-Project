@@ -8,6 +8,7 @@ import Slider from "@material-ui/core/Slider";
 import { useAlert } from "react-alert";
 import Typography from "@material-ui/core/Typography";
 import MetaData from "../layout/MetaData";
+import { useParams } from "react-router-dom";
 
 const categories = [
   "Laptop",
@@ -22,6 +23,7 @@ const categories = [
 const Products = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
+  const { keyword } = useParams();
 
   const { error, loading, products, productsCount } = useSelector(
     (state) => state.products
@@ -32,8 +34,8 @@ const Products = () => {
       alert.error(error);
       dispatch(clearErrors());
     }
-    dispatch(getProduct());
-  }, [dispatch, alert, error]);
+    dispatch(getProduct(keyword));
+  }, [dispatch, alert, error, keyword]);
 
   return (
     <Fragment>
