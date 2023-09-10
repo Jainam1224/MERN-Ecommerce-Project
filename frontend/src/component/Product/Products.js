@@ -9,6 +9,7 @@ import { useAlert } from "react-alert";
 import Typography from "@material-ui/core/Typography";
 import MetaData from "../layout/MetaData";
 import { useParams } from "react-router-dom";
+import Pagination from "react-js-pagination";
 
 const categories = [
   "Laptop",
@@ -25,17 +26,22 @@ const Products = () => {
   const alert = useAlert();
   const { keyword } = useParams();
 
-  const { error, loading, products, productsCount } = useSelector(
-    (state) => state.products
-  );
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const { error, loading, products, productsCount, resultPerPage } =
+    useSelector((state) => state.products);
+
+  const setCurrentPageNo = (e) => {
+    setCurrentPage(e);
+  };
 
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
-    dispatch(getProduct(keyword));
-  }, [dispatch, alert, error, keyword]);
+    dispatch(getProduct(keyword, currentPage));
+  }, [dispatch, alert, error, keyword, currentPage]);
 
   return (
     <Fragment>
@@ -51,6 +57,27 @@ const Products = () => {
               products.map((product) => (
                 <ProductCard key={product._id} product={product} />
               ))}
+          </div>
+
+          <div className="paginationBox">
+            {resultPerPage < productsCount && (
+              <div className="paginationBox">
+                <Pagination
+                  activePage={currentPage}
+                  itemsCountPerPage={resultPerPage}
+                  totalItemsCount={productsCount}
+                  onChange={setCurrentPageNo}
+                  nextPageText="Next"
+                  prevPageText="Prev"
+                  firstPageText="1st"
+                  lastPageText="Last"
+                  itemClass="page-item"
+                  linkClass="page-link"
+                  activeClass="pageItemActive"
+                  activeLinkClass="pageLinkActive"
+                />
+              </div>
+            )}
           </div>
         </Fragment>
       )}

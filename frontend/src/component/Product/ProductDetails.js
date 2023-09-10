@@ -21,7 +21,7 @@ import { Rating } from "@material-ui/lab";
 const ProductDetails = () => {
   const alert = useAlert();
   let { id } = useParams(); // Here we want to read the id of the product from params we are passing
-  console.log("id", id);
+
   const dispatch = useDispatch();
   const { product, loading, error } = useSelector(
     (state) => state.productDetail
