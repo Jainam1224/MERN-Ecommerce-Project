@@ -18,6 +18,7 @@ const categories = [
   "Tops",
   "Attire",
   "Camera",
+  "Lifestyle",
   "SmartPhones",
 ];
 
@@ -28,6 +29,8 @@ const Products = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 25000]);
+  const [category, setCategory] = useState([0, 25000]);
+  const [ratings, setRatings] = useState(0);
 
   const {
     error,
@@ -55,8 +58,8 @@ const Products = () => {
       alert.error(error);
       dispatch(clearErrors());
     }
-    dispatch(getProduct(keyword, currentPage, price));
-  }, [dispatch, alert, error, keyword, currentPage, price]);
+    dispatch(getProduct(keyword, currentPage, price, category, ratings));
+  }, [dispatch, alert, error, keyword, currentPage, price, category, ratings]);
 
   return (
     <Fragment>
@@ -84,6 +87,33 @@ const Products = () => {
               min={0}
               max={25000}
             />
+
+            <Typography>Categories</Typography>
+            <ul className="categoryBox">
+              {categories.map((category) => (
+                <li
+                  className="category-link"
+                  key={category}
+                  onClick={() => setCategory(category)}
+                >
+                  {category}
+                </li>
+              ))}
+            </ul>
+
+            <fieldset>
+              <Typography component={"legend"}>Ratings Above</Typography>
+              <Slider
+                value={ratings}
+                onChange={(e, newRating) => {
+                  setRatings(newRating);
+                }}
+                aria-labelledby="continuous-slider"
+                valueLabelDisplay="auto"
+                min={0}
+                max={5}
+              />
+            </fieldset>
           </div>
 
           <div className="paginationBox">
