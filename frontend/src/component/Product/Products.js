@@ -27,21 +27,36 @@ const Products = () => {
   const { keyword } = useParams();
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [price, setPrice] = useState([0, 25000]);
 
-  const { error, loading, products, productsCount, resultPerPage } =
-    useSelector((state) => state.products);
+  const {
+    error,
+    loading,
+    products,
+    productsCount,
+    resultPerPage,
+    filteredProductsCount,
+  } = useSelector((state) => state.products);
 
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
   };
+
+  const priceHandler = (event, newPrice) => {
+    setPrice(newPrice);
+  };
+
+  // Here count is number of products which are filtered. So, once the product is filtered and
+  // are less then 8 (per page count) then we don't want to show pagination.
+  let count = filteredProductsCount;
 
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
-    dispatch(getProduct(keyword, currentPage));
-  }, [dispatch, alert, error, keyword, currentPage]);
+    dispatch(getProduct(keyword, currentPage, price));
+  }, [dispatch, alert, error, keyword, currentPage, price]);
 
   return (
     <Fragment>
@@ -59,8 +74,20 @@ const Products = () => {
               ))}
           </div>
 
+          <div className="filterBox">
+            <Typography>Price</Typography>
+            <Slider
+              value={price}
+              onChange={priceHandler}
+              valueLabelDisplay="auto"
+              aria-labelledby="range-slider"
+              min={0}
+              max={25000}
+            />
+          </div>
+
           <div className="paginationBox">
-            {resultPerPage < productsCount && (
+            {resultPerPage < count && (
               <div className="paginationBox">
                 <Pagination
                   activePage={currentPage}

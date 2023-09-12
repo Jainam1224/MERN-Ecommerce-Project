@@ -23,9 +23,16 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
   // new search apiFeature
   const apiFeature = new ApiFeatures(Product.find(), req.query)
     .search() // searching product by name
-    .filter() // filtering product by category
-    .pagination(resultPerPage); // pagination
-  const products = await apiFeature.query; // accessing the class
+    .filter(); // filtering product by category
+
+  let products = await apiFeature.query; // accessing the class data i.e. query
+  let filteredProductsCount = products.length;
+  apiFeature.pagination(resultPerPage); // pagination
+
+  // Here we need to add .clone() for queries because we are trying to get different products using same query
+  // https://mongoosejs.com/docs/migrating_to_6.html#duplicate-query-execution
+  // Here we can see quering same query multiple times throws and error.
+  products = await apiFeature.query.clone();
 
   // older way
   // const products = await Product.find();
@@ -34,6 +41,7 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
     products,
     productsCount,
     resultPerPage,
+    filteredProductsCount,
   });
 });
 
