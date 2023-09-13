@@ -9,6 +9,8 @@ import ProductDetails from "./component/Product/ProductDetails";
 import Products from "./component/Product/Products";
 import Search from "./component/Product/Search.js";
 import LoginSignUp from "./component/User/LoginSignUp";
+import store from "./store";
+import { loadUser } from "./actions/userAction";
 
 function App() {
   // loading font styles before the page gets load
@@ -18,6 +20,8 @@ function App() {
         families: ["Roboto", "Droid Sans", "Chilanka"],
       },
     });
+    // This is used to not open login and register page if the user is already logged in -> so getting users data just when any page is laoded.
+    store.dispatch(loadUser());
   }, []);
 
   return (
