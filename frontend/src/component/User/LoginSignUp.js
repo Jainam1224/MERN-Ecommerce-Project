@@ -4,7 +4,7 @@ import Loader from "../layout/Loader/Loader";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-import { clearErrors, login } from "../../actions/userAction";
+import { clearErrors, login, register } from "../../actions/userAction";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import FaceIcon from "@material-ui/icons/Face";
@@ -50,7 +50,7 @@ const LoginSignUp = () => {
     myForm.set("email", email);
     myForm.set("password", password);
     myForm.set("avatar", avatar);
-    // dispatch(register(myForm));
+    dispatch(register(myForm));
   };
 
   const registerDataChange = (e) => {
@@ -123,6 +123,7 @@ const LoginSignUp = () => {
                     placeholder="Email"
                     required
                     value={loginEmail}
+                    autoComplete="on"
                     onChange={(e) => setLoginEmail(e.target.value)}
                   />
                 </div>
@@ -132,12 +133,18 @@ const LoginSignUp = () => {
                     type="password"
                     placeholder="Password"
                     required
+                    autoComplete="on"
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
                   />
                 </div>
                 <Link to="/password/forgot">Forget Password ?</Link>
-                <input type="submit" value="Login" className="loginBtn" />
+                <input
+                  type="submit"
+                  value="Login"
+                  autoComplete="on"
+                  className="loginBtn"
+                />
               </form>
               <form
                 className="signUpForm"
@@ -151,6 +158,7 @@ const LoginSignUp = () => {
                     type="text"
                     placeholder="Name"
                     required
+                    autoComplete="on"
                     name="name"
                     value={name}
                     onChange={registerDataChange}
@@ -162,6 +170,7 @@ const LoginSignUp = () => {
                     type="email"
                     placeholder="Email"
                     required
+                    autoComplete="on"
                     name="email"
                     value={email}
                     onChange={registerDataChange}
@@ -173,6 +182,7 @@ const LoginSignUp = () => {
                     type="password"
                     placeholder="Password"
                     required
+                    autoComplete="on"
                     name="password"
                     value={password}
                     onChange={registerDataChange}
@@ -184,11 +194,17 @@ const LoginSignUp = () => {
                   <input
                     type="file"
                     name="avatar"
+                    autoComplete="on"
                     accept="image/*"
                     onChange={registerDataChange}
                   />
                 </div>
-                <input type="submit" value="Register" className="signUpBtn" />
+                <input
+                  type="submit"
+                  value="Register"
+                  autoComplete="on"
+                  className="signUpBtn"
+                />
               </form>
             </div>
           </div>
