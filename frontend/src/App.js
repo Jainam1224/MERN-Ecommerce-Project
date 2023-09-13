@@ -11,8 +11,11 @@ import Search from "./component/Product/Search.js";
 import LoginSignUp from "./component/User/LoginSignUp";
 import store from "./store";
 import { loadUser } from "./actions/userAction";
+import UserOptions from "./component/layout/Header/UserOptions.js";
+import { useSelector } from "react-redux";
 
 function App() {
+  const { isAuthenticated, user } = useSelector((state) => state.user);
   // loading font styles before the page gets load
   useEffect(() => {
     WebFont.load({
@@ -27,6 +30,8 @@ function App() {
   return (
     <Router>
       <Header />
+      {/* The below is only shown when user is logged in */}
+      {isAuthenticated && <UserOptions user={user} />}
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/product/:id" element={<ProductDetails />} />
