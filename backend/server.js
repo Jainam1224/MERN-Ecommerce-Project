@@ -7,9 +7,9 @@ const dotenv = require("dotenv");
 const connectDatabase = require("./config/database");
 
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  cloud_name: "dte0nqpui",
+  api_key: "899447151696467",
+  api_secret: "jkFD35NM_RtYKvuRvz2gsfkfcUY",
 });
 
 // uncaught Exception => e.g. if we are not able to find any field i.e. just uncomment console.log(youtube) in this file

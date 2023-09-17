@@ -29,7 +29,7 @@ const Products = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 25000]);
-  const [category, setCategory] = useState([0, 25000]);
+  const [category, setCategory] = useState("");
   const [ratings, setRatings] = useState(0);
 
   const {
@@ -58,6 +58,7 @@ const Products = () => {
       alert.error(error);
       dispatch(clearErrors());
     }
+    console.log("data", keyword, currentPage, price, category, ratings);
     dispatch(getProduct(keyword, currentPage, price, category, ratings));
   }, [dispatch, alert, error, keyword, currentPage, price, category, ratings]);
 
