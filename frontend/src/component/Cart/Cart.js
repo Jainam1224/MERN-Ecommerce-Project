@@ -28,7 +28,7 @@ const Cart = ({ history }) => {
   };
 
   const deleteCartItems = (id) => {
-    // dispatch(removeItemsFromCart(id));
+    dispatch(removeItemsFromCart(id));
   };
 
   const checkoutHandler = () => {
