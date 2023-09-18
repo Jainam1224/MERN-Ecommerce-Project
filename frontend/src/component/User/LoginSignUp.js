@@ -4,7 +4,12 @@ import Loader from "../layout/Loader/Loader";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-import { clearErrors, login, register } from "../../actions/userAction";
+import {
+  clearErrors,
+  loadUser,
+  login,
+  register,
+} from "../../actions/userAction";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import FaceIcon from "@material-ui/icons/Face";
@@ -79,6 +84,7 @@ const LoginSignUp = () => {
     }
 
     if (isAuthenticated) {
+      dispatch(loadUser()); // In accounts page the data was not getting loaded and so need to load the user's data while redirecting to /account url
       navigate(redirect);
     }
   }, [dispatch, error, alert, redirect, isAuthenticated, navigate]);
