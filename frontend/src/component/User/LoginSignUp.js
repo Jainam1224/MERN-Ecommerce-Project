@@ -75,8 +75,13 @@ const LoginSignUp = () => {
     }
   };
 
-  const redirect = "/account";
+  // Here window.location.search will give the data of ?redirect=shipping, then here we will get shipping
+  // check frontend/src/component/Cart/Cart.js => file for sending data.
+  const redirect = window.location.search
+    ? `/${window.location.search.split("=")[1]}`
+    : "/account";
 
+  console.log("redirect", redirect);
   useEffect(() => {
     if (error) {
       alert.error(error);
