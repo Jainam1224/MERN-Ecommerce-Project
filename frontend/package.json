@@ -5,6 +5,7 @@
   "proxy": "http://127.0.0.1:4000",
   "dependencies": {
     "@material-ui/core": "^4.12.4",
+    "@material-ui/data-grid": "^4.0.0-alpha.37",
     "@material-ui/icons": "^4.11.3",
     "@material-ui/lab": "^4.0.0-alpha.61",
     "@stripe/react-stripe-js": "^2.3.0",
