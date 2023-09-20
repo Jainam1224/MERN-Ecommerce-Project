@@ -26,6 +26,7 @@ import axios from "axios";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Payment from "./component/Cart/Payment";
+import OrderSuccess from "./component/Cart/OrderSuccess";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -135,6 +136,16 @@ function App() {
             }
           />
         )}
+        <Route
+          exact
+          path="/success"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              component={OrderSuccess}
+            />
+          }
+        />
       </Routes>
       <Footer />
     </Router>
