@@ -28,6 +28,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Payment from "./component/Cart/Payment";
 import OrderSuccess from "./component/Cart/OrderSuccess";
 import MyOrders from "./component/Order/MyOrders";
+import OrderDetails from "./component/Order/OrderDetails";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -154,6 +155,16 @@ function App() {
             <ProtectedRoute
               isAuthenticated={isAuthenticated}
               component={MyOrders}
+            />
+          }
+        />
+        <Route
+          exact
+          path="/order/:id"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              component={OrderDetails}
             />
           }
         />
