@@ -4,9 +4,11 @@ import { Navigate } from "react-router-dom";
 
 // This is basically created for -> If the user is already authenticated/logged-in then only
 // he should be able to see Profile, Orders etc, else it should sent to login page.
+
+// isAdmin true means that that particular routes will be accessed only by admins
 const ProtectedRoute = ({ isAdmin, component: Component, isAuthenticated }) => {
   const { loading, user } = useSelector((state) => state.user);
-  console.log("isAuthenticated", isAuthenticated);
+
   return (
     loading === false && (
       <Fragment>
