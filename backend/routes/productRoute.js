@@ -8,13 +8,16 @@ const {
   createProductReview,
   getProductReviews,
   deleteReview,
+  getAdminProducts,
 } = require("../controllers/productController");
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 
 // Getting router functionalities from express server
 const router = express.Router();
 
-router.route("/products").get(getAllProducts);
+router
+  .route("/products")
+  .get(isAuthenticatedUser, authorizeRoles("admin"), getAllProducts);
 router
   .route("/product/new")
   .post(isAuthenticatedUser, authorizeRoles("admin"), createProduct);
@@ -22,6 +25,8 @@ router
   .route("/product/:id")
   .put(isAuthenticatedUser, authorizeRoles("admin"), updateProduct)
   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteProduct);
+
+router.route("/admin/products").get(getAdminProducts);
 
 router.route("/product/:id").get(getProductDetails);
 
