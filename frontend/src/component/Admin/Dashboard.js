@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar.js";
 import "./Dashboard.css";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import Chart from "chart.js/auto";
 import { Doughnut, Line } from "react-chartjs-2";
 import { useSelector, useDispatch } from "react-redux";
 import { getAdminProduct } from "../../actions/productAction";
@@ -40,28 +41,28 @@ const Dashboard = () => {
       totalAmount += item.totalPrice;
     });
 
-  //   const lineState = {
-  //     labels: ["Initial Amount", "Amount Earned"],
-  //     datasets: [
-  //       {
-  //         label: "TOTAL AMOUNT",
-  //         backgroundColor: ["tomato"],
-  //         hoverBackgroundColor: ["rgb(197, 72, 49)"],
-  //         data: [0, totalAmount],
-  //       },
-  //     ],
-  //   };
+  const lineState = {
+    labels: ["Initial Amount", "Amount Earned"],
+    datasets: [
+      {
+        label: "TOTAL AMOUNT",
+        backgroundColor: ["tomato"],
+        hoverBackgroundColor: ["rgb(197, 72, 49)"],
+        data: [0, totalAmount],
+      },
+    ],
+  };
 
-  //   const doughnutState = {
-  //     labels: ["Out of Stock", "InStock"],
-  //     datasets: [
-  //       {
-  //         backgroundColor: ["#00A6B4", "#6800B4"],
-  //         hoverBackgroundColor: ["#4B5000", "#35014F"],
-  //         data: [outOfStock, products.length - outOfStock],
-  //       },
-  //     ],
-  //   };
+  const doughnutState = {
+    labels: ["Out of Stock", "InStock"],
+    datasets: [
+      {
+        backgroundColor: ["#00A6B4", "#6800B4"],
+        hoverBackgroundColor: ["#4B5000", "#35014F"],
+        data: [outOfStock, products.length - outOfStock],
+      },
+    ],
+  };
 
   return (
     <div className="dashboard">
@@ -93,13 +94,13 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* <div className="lineChart">
+        <div className="lineChart">
           <Line data={lineState} />
         </div>
 
         <div className="doughnutChart">
           <Doughnut data={doughnutState} />
-        </div> */}
+        </div>
       </div>
     </div>
   );
