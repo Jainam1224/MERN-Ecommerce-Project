@@ -6,6 +6,7 @@ import {
   newReviewReducer,
   productDetailsReducer,
   productReducer,
+  productsReducer,
 } from "./reducers/productReducer";
 import {
   allUsersReducer,
@@ -22,7 +23,7 @@ import {
 } from "./reducers/orderReducer";
 
 const reducer = combineReducers({
-  products: productReducer,
+  products: productsReducer,
   productDetail: productDetailsReducer,
   user: userReducer,
   profile: profileReducer,
@@ -35,6 +36,7 @@ const reducer = combineReducers({
   allUsers: allUsersReducer,
   allOrders: allOrdersReducer,
   newProduct: newProductReducer,
+  product: productReducer,
 });
 
 // Getting the data from local storage if it is already present so if we reload the page then also data is not gone.

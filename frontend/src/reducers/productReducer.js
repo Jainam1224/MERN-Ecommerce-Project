@@ -16,10 +16,14 @@ import {
   NEW_PRODUCT_SUCCESS,
   NEW_PRODUCT_FAIL,
   NEW_PRODUCT_RESET,
+  DELETE_PRODUCT_REQUEST,
+  DELETE_PRODUCT_SUCCESS,
+  DELETE_PRODUCT_FAIL,
+  DELETE_PRODUCT_RESET,
   CLEAR_ERRORS,
 } from "../constants/productConstants";
 
-export const productReducer = (state = { products: [] }, action) => {
+export const productsReducer = (state = { products: [] }, action) => {
   switch (action.type) {
     // This will be called when we are requesting to backend using API and we didn't got the response
     case ALL_PRODUCT_REQUEST:
@@ -142,6 +146,40 @@ export const newProductReducer = (state = { product: {} }, action) => {
       return {
         ...state,
         success: false,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+    default:
+      return state;
+  }
+};
+
+export const productReducer = (state = {}, action) => {
+  switch (action.type) {
+    case DELETE_PRODUCT_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case DELETE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isDeleted: action.payload,
+      };
+    case DELETE_PRODUCT_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case DELETE_PRODUCT_RESET:
+      return {
+        ...state,
+        isDeleted: false,
       };
     case CLEAR_ERRORS:
       return {
