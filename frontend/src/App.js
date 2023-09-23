@@ -31,6 +31,7 @@ import MyOrders from "./component/Order/MyOrders";
 import OrderDetails from "./component/Order/OrderDetails";
 import Dashboard from "./component/Admin/Dashboard";
 import ProductList from "./component/Admin/ProductList";
+import NewProduct from "./component/Admin/NewProduct";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -183,12 +184,23 @@ function App() {
         />
         <Route
           exact
-          path="/admin/product"
+          path="/admin/products"
           element={
             <ProtectedRoute
               isAdmin={true}
               isAuthenticated={isAuthenticated}
               component={ProductList}
+            />
+          }
+        />
+        <Route
+          exact
+          path="/admin/product"
+          element={
+            <ProtectedRoute
+              isAdmin={true}
+              isAuthenticated={isAuthenticated}
+              component={NewProduct}
             />
           }
         />
