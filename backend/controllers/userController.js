@@ -290,7 +290,10 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
     );
   }
 
-  // WE WILL REMOVE IMAGE FROM CLOUDINARY PACKAGE
+  // REMOVE IMAGE FROM CLOUDINARY FOLDER
+  const imageId = user.avatar.public_id;
+
+  await cloudinary.v2.uploader.destroy(imageId);
 
   // We can use deleteOne() or deleteMany() to delete the product from database
   // But, as we are using id it will be unique for all products so used deleteOne()
