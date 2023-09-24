@@ -20,6 +20,7 @@ import {
   myOrdersReducer,
   newOrderReducer,
   orderDetailsReducer,
+  orderReducer,
 } from "./reducers/orderReducer";
 
 const reducer = combineReducers({
@@ -37,6 +38,7 @@ const reducer = combineReducers({
   allOrders: allOrdersReducer,
   newProduct: newProductReducer,
   product: productReducer,
+  order: orderReducer,
 });
 
 // Getting the data from local storage if it is already present so if we reload the page then also data is not gone.
