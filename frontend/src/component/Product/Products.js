@@ -58,7 +58,7 @@ const Products = () => {
       alert.error(error);
       dispatch(clearErrors());
     }
-    console.log("data", keyword, currentPage, price, category, ratings);
+
     dispatch(getProduct(keyword, currentPage, price, category, ratings));
   }, [dispatch, alert, error, keyword, currentPage, price, category, ratings]);
 

@@ -81,7 +81,6 @@ const LoginSignUp = () => {
     ? `/${window.location.search.split("=")[1]}`
     : "/account";
 
-  console.log("redirect", redirect);
   useEffect(() => {
     if (error) {
       alert.error(error);
